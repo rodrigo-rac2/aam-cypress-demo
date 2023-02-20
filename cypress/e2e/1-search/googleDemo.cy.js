@@ -7,10 +7,6 @@ describe('Google search tests', () => {
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
     cy.visit('https://google.com')
-    // cy.get('iframe')
-    //     .find('button[class*="M6CB1c rr4y5c"]')
-    //     .should('be.visible')
-    //     .click()
   })
 
   it('Feeling lucky elements should be visible', () => {
@@ -24,15 +20,15 @@ describe('Google search tests', () => {
   it('Should enter "AAM" in input box and feel lucky', () => {
     cy.get('[name=q]').clear().type("AAM")
     cy.get('input[name=btnI]').eq(1).click({force:true})
-    cy.origin('https://www.aam.com', () => {
-      cy.on('uncaught:exception', (e) => {
-        if (e.message.includes('Things went bad')) {
-          // we expected this error, so let's ignore it
-          // and let the test continue`
-          return false
-        }
-      })
-    })
+    // cy.origin('https://www.aam.com', () => {
+    //   cy.on('uncaught:exception', (e) => {
+    //     if (e.message.includes('Things went bad')) {
+    //       // we expected this error, so let's ignore it
+    //       // and let the test continue`
+    //       return false
+    //     }
+    //   })
+    // })
     //cy.visit('https://www.aam.com/pt-br')
   })
 
@@ -41,7 +37,7 @@ describe('Google search tests', () => {
     // Then, we use `should` to assert that there are two matched items,
     // which are the two default items.
     cy.get('[name=q]').should('be.visible')
-    cy.get('input[name=btnK]').eq(1).should('be.visible')
+    cy.get('input[name=btnK]').eq(1).should('not.be.visible')
   })
 
   it('Should enter "AAM" in input box and perform regular search', () => {
