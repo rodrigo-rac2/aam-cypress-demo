@@ -20,15 +20,15 @@ describe('Google search tests', () => {
   it('Should enter "AAM" in input box and feel lucky', () => {
     cy.get('[name=q]').clear().type("AAM")
     cy.get('input[name=btnI]').eq(1).click({force:true})
-    // cy.origin('https://www.aam.com', () => {
-    //   cy.on('uncaught:exception', (e) => {
-    //     if (e.message.includes('Things went bad')) {
-    //       // we expected this error, so let's ignore it
-    //       // and let the test continue`
-    //       return false
-    //     }
-    //   })
-    // })
+    cy.origin('https://www.aam.com', () => {
+      cy.on('uncaught:exception', (e) => {
+        if (e.message.includes('Things went bad')) {
+          // we expected this error, so let's ignore it
+          // and let the test continue`
+          return false
+        }
+      })
+    })
     //cy.visit('https://www.aam.com/pt-br')
   })
 
@@ -37,7 +37,7 @@ describe('Google search tests', () => {
     // Then, we use `should` to assert that there are two matched items,
     // which are the two default items.
     cy.get('[name=q]').should('be.visible')
-    cy.get('input[name=btnK]').eq(1).should('not.be.visible')
+    cy.get('input[name=btnK]').eq(1).should('be.visible')
   })
 
   it('Should enter "AAM" in input box and perform regular search', () => {
@@ -48,6 +48,6 @@ describe('Google search tests', () => {
   it('Should check if "American Axle & Manufacturing" is displayed', () => {
     cy.get('[name=q]').clear().type("AAM")
     cy.get('input[name=btnK]').eq(1).click({force:true})
-    cy.contains('American Axle& Manufacturing')
+    cy.contains('American Axle & Manufacturing')
   })
 })
