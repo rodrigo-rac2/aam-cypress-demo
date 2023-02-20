@@ -7,7 +7,7 @@
   "author": "Rodrigo Costa <60664391+rodrigo-rac2@users.noreply.github.com>",
   "scripts":  {
     "cy:local": "npx cypress open --e2e --browser chrome",
-    "cy:ci": "npx cypress run --record --key ceaffe18-89bc-4752-b4cc-f7fc43b4b217"
+    "cy:ci": "npx cypress run --record --key ceaffe18-89bc-4752-b4cc-f7fc43b4b217 --browser chrome"
   },
   "license": "MIT",
   "private": false,

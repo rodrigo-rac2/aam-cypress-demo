@@ -24,6 +24,16 @@ describe('Google search tests', () => {
   it('Should enter "AAM" in input box and feel lucky', () => {
     cy.get('[name=q]').clear().type("AAM")
     cy.get('input[name=btnI]').eq(1).click({force:true})
+    cy.origin('https://www.aam.com', () => {
+      cy.on('uncaught:exception', (e) => {
+        if (e.message.includes('Things went bad')) {
+          // we expected this error, so let's ignore it
+          // and let the test continue`
+          return false
+        }
+      })
+    })
+    //cy.visit('https://www.aam.com/pt-br')
   })
 
   it('Regular search elements should be visible', () => {
