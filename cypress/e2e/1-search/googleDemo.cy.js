@@ -48,6 +48,6 @@ describe('Google search tests', () => {
   it('Should check if "American Axle & Manufacturing" is displayed', () => {
     cy.get('[name=q]').clear().type("AAM")
     cy.get('input[name=btnK]').eq(1).click({force:true})
-    cy.contains('American Axle & Manufacturing')
+    cy.contains('American Axle& Manufacturing')
   })
 })
